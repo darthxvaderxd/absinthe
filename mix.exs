@@ -2,11 +2,12 @@ defmodule Absinthe.Mixfile do
   use Mix.Project
 
   @source_url "https://github.com/absinthe-graphql/absinthe"
+  @version "1.6.8"
 
   def project do
     [
       app: :absinthe,
-      version: "1.6.8",
+      version: @version,
       elixir: "~> 1.10",
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
@@ -17,7 +18,7 @@ defmodule Absinthe.Mixfile do
         dialyzer: :test
       ],
       docs: [
-        source_ref: "v1.6.8",
+        source_ref: "v#{@version}",
         main: "overview",
         logo: "logo.png",
         extra_section: "GUIDES",
@@ -28,9 +29,6 @@ defmodule Absinthe.Mixfile do
         groups_for_extras: groups_for_extras()
       ],
       deps: deps(),
-      alias: [
-        credo: ["cmd mix credo list"],
-      ],
       dialyzer: [
         plt_core_path: "priv/plts",
         plt_add_apps: [:mix, :dataloader, :decimal, :ex_unit]
@@ -81,11 +79,6 @@ defmodule Absinthe.Mixfile do
       {:benchee, ">= 1.0.0", only: :dev},
       {:dialyxir, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:makeup_graphql, "~> 0.1.0", only: :dev},
-
-      # dev / test deps
-      {:credo, "> 0.0.0", only: [:dev, :test], runtime: false},
-      {:ex_check, "~> 0.16.0", only: [:dev], runtime: false},
-      {:mix_audit, "> 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end
 
